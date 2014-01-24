@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+  <ruleAttributes xmlns="ns:workflow/RuleAttribute" xsi:schemaLocation="ns:workflow/RuleAttribute resource:RuleAttribute">
+    <ruleAttribute>
+        <name>EDL.Category.BlogPost</name>
+        <className>org.kuali.rice.kew.docsearch.xml.StandardGenericXMLSearchableAttribute</className>
+        <label>EDL Category Routing</label>
+        <description>EDL Blogpost Routing</description>
+        <type>RuleXmlAttribute</type>
+        <routingConfig>
+            <fieldDef name="category" title="category" workflowType="ALL">
+                <display>
+                    <values title="(Kuali) Kuali">Kuali</values>
+                    <values title="(Talend) Talend">Talend</values>
+                </display>
+                <validation required="false">
+                    <message>Please select a category.</message>
+                </validation>
+                <fieldEvaluation>
+                    <xpathexpression>//category = wf:ruledata('category')</xpathexpression>
+                </fieldEvaluation>
+            </fieldDef>
+            <xmlDocumentContent>
+                <campus>%category%</campus>
+            </xmlDocumentContent>
+        </routingConfig>
+    </ruleAttribute>
+  </ruleAttributes>
+</data>

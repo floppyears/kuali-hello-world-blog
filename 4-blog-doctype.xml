@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+    <documentTypes xmlns="ns:workflow/DocumentType" xsi:schemaLocation="ns:workflow/DocumentType resource:DocumentType">
+        <documentType>
+            <name>eDoc.BlogPost.DocType</name>
+            <description>Simple blog post with title and body</description>
+            <label>Blog Post Label here</label>
+            <postProcessorName>org.kuali.rice.edl.framework.workflow.EDocLitePostProcessor</postProcessorName>
+            <superUserGroupName namespace="KUALI">eDoc.BlogPost.SuperUsers</superUserGroupName>
+            <blanketApprovePolicy>NONE</blanketApprovePolicy>
+            <defaultExceptionGroupName namespace="KUALI">eDoc.BlogPost.defaultExceptions</defaultExceptionGroupName>
+            <docHandler>${workflow.url}/EDocLite</docHandler>
+            <active>true</active>
+            <routingVersion>2</routingVersion>
+            <routePaths>
+                <routePath>
+                    <start name="Initiated" nextNode="eDoc.BlogPost.Published" />
+                    <requests name="eDoc.BlogPost.Published" />
+                </routePath>
+            </routePaths>
+            <routeNodes>
+                <start name="Initiated">
+                    <activationType>P</activationType>
+                    <mandatoryRoute>false</mandatoryRoute>
+                    <finalApproval>false</finalApproval>
+                </start>
+                <requests name="eDoc.BlogPost.Published">
+                    <activationType>P</activationType>
+                    <ruleTemplate>eDoc.BlogPost.Published</ruleTemplate>
+                    <mandatoryRoute>false</mandatoryRoute>
+                    <finalApproval>false</finalApproval>
+                </requests>
+            </routeNodes>
+        </documentType>
+    </documentTypes>
+</data>
+

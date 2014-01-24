@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data xmlns="ns:workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="ns:workflow resource:WorkflowData">
+    <edoclite xmlns="ns:workflow/EDocLite" xsi:schemaLocation="ns:workflow/EDocLite resource:EDocLite">
+        <edl name="eDoc.BlogPost.Form" title="Blog Post">
+            <security />
+            <createInstructions>This instruction is specific to the create stuff</createInstructions>
+            <instructions>These are the plain instructions</instructions>
+            <validations />
+            <attributes />
+
+            <fieldDef name="title" title="Title">
+                <display>
+                    <type>text</type>
+                    <meta>
+                        <name>size</name>
+                        <value>60</value>
+                    </meta>
+                </display>
+                <validation required="false" />
+            </fieldDef>
+
+            <fieldDef name="category" attributeName="EDL.Category.BlogPost" title="Category:">
+                <display>
+                    <type>select</type>
+                    <values title="talend">Talend</values>
+                    <values title="kuali">Kuali</values>
+                </display>
+                <validation required="true">
+                    <message>Please select a category for your post.</message>
+                </validation>
+            </fieldDef>
+
+            <fieldDef name="body" title="body">
+                <display>
+                    <type>textarea</type>
+                    <meta>
+                        <name>cols</name>
+                        <value>60</value>
+                    </meta>
+                    <meta>
+                        <name>rows</name>
+                        <value>10</value>
+                    </meta>
+                </display>
+                <validation required="true" />
+            </fieldDef>
+        </edl>
+    
+        <style name="BlogStyle">
+            <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:my-class="xalan://org.kuali.rice.edl.framework.util.EDLFunctions" version="1.0">
+
+                <xsl:include href="widgets" />
+                <xsl:output indent="yes" method="html" omit-xml-declaration="yes" version="4.0.1"/>
+                <xsl:variable name="actionable" select="/documentContent/documentState/actionable" />
+                <xsl:variable name="docHeaderId" select="/documentContent/documentState/docId" />
+                <xsl:variable name="editable" select="/documentContent/documentState/editable" />
+                <xsl:variable name="globalReadOnly" select="/documentContent/documentState/editable != 'true'" />
+                <xsl:variable name="docStatus" select="//documentState/workflowDocumentState/status" />
+                <xsl:variable name="isAtNodeInitiated" select="my-class:isAtNode($docHeaderId, 'Initiated')" />
+                <xsl:variable name="isPastInitiated" select="my-class:isNodeInPreviousNodeList('Initiated', $docHeaderId)" />
+                <xsl:variable name="isUserInitiator" select="my-class:isUserInitiator($docHeaderId)" />
+
+                <xsl:param name="overrideMain" select="'true'" />
+
+                <xsl:template name="mainForm">
+                    <html xmlns="">
+                        <head>
+                            <script language="javascript"><![CDATA[
+                                function cry(text){
+                                    alert('writing js within xml makes angels cry :(');
+                                }
+                            ]]></script>
+
+                        <xsl:call-template name="htmlHead" />
+                    </head>
+                    <body onload="onPageLoad()">
+                        <xsl:call-template name="header" />
+                        <xsl:call-template name="instructions" />
+                        <xsl:call-template name="errors" />
+                        <xsl:variable name="formTarget" select="'EDocLite'" />
+
+                        <form action="{$formTarget}" enctype="multipart/form-data" id="edoclite" method="post" onsubmit="return validateOnSubmit(this)" class="form-horizontal">
+                            <xsl:call-template name="hidden-params" />
+                            <xsl:call-template name="mainBody" />
+                            <xsl:call-template name="notes" />
+                            <br />
+                            <xsl:call-template name="buttons" />
+                        </form>
+                    </body>
+                </html>
+            </xsl:template>
+
+            <xsl:template name="mainBody">
+                <!-- debug: print variables as html comments -->
+                <!-- $docStatus=<xsl:value-of select="$docStatus" /> -->
+
+                <h2>Blog Post Sample Form</h2>
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'title'"/>
+                    <xsl:with-param name="renderCmd" select="'title'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'title'"/>
+                    <xsl:with-param name="renderCmd" select="'input'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'category'"/>
+                    <xsl:with-param name="renderCmd" select="'title'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'category'"/>
+                    <xsl:with-param name="renderCmd" select="'input'"/>
+                    <xsl:with-param name="readOnly" select="$isPastInitiated"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'body'"/>
+                    <xsl:with-param name="renderCmd" select="'title'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'body'"/>
+                    <xsl:with-param name="renderCmd" select="'input'"/>
+                </xsl:call-template>
+            </xsl:template>
+            </xsl:stylesheet>
+        </style>
+
+        <association>
+            <docType>eDoc.BlogPost.DocType</docType>
+            <definition>eDoc.BlogPost.Form</definition>
+            <style>BlogStyle</style>
+            <active>true</active>
+        </association>
+    </edoclite>
+</data>
