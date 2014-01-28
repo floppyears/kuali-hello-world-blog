@@ -3,15 +3,15 @@
   <ruleAttributes xmlns="ns:workflow/RuleAttribute" xsi:schemaLocation="ns:workflow/RuleAttribute resource:RuleAttribute">
     <ruleAttribute>
         <name>EDL.Category.BlogPost</name>
-        <className>org.kuali.rice.kew.docsearch.xml.StandardGenericXMLSearchableAttribute</className>
+        <className>org.kuali.rice.kew.rule.RuleRoutingAttribute</className>
         <label>EDL Category Routing</label>
         <description>EDL Blogpost Routing</description>
         <type>RuleXmlAttribute</type>
         <routingConfig>
             <fieldDef name="category" title="category" workflowType="ALL">
                 <display>
-                    <values title="(Kuali) Kuali">Kuali</values>
-                    <values title="(Talend) Talend">Talend</values>
+                    <values title="kuali">kuali</values>
+                    <values title="talend">talend</values>
                 </display>
                 <validation required="false">
                     <message>Please select a category.</message>
