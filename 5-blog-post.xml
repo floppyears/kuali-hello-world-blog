@@ -22,8 +22,8 @@
             <fieldDef name="category" attributeName="EDL.Category.BlogPost" title="Category:">
                 <display>
                     <type>select</type>
-                    <values title="talend">Talend</values>
-                    <values title="kuali">Kuali</values>
+                    <values title="Talend">Talend</values>
+                    <values title="Kuali">Kuali</values>
                 </display>
                 <validation required="true">
                     <message>Please select a category for your post.</message>

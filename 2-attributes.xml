@@ -10,8 +10,8 @@
         <routingConfig>
             <fieldDef name="category" title="category" workflowType="ALL">
                 <display>
-                    <values title="kuali">kuali</values>
-                    <values title="talend">talend</values>
+                    <values title="Kuali">kuali</values>
+                    <values title="Talend">talend</values>
                 </display>
                 <validation required="false">
                     <message>Please select a category.</message>
