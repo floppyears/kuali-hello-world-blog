@@ -44,6 +44,34 @@
                 </display>
                 <validation required="true" />
             </fieldDef>
+
+            <fieldDef name="onid" title="ONID Username">
+                <display>
+                    <type>text</type>
+                </display>
+                <validation required="true"/>
+            </fieldDef>
+
+            <fieldDef name="affiliation" title="Affiliation">
+                <value>Select</value>
+                <display>
+                    <type>select</type>
+                    <values title="Faculty">Faculty</values>
+                    <values title="Staff">Staff</values>
+                </display>
+                <validation required="false"/>
+            </fieldDef>
+
+            <fieldDef name="year" title="Years at OSU">
+                <display>
+                    <type>text</type>
+                    <meta>
+                        <name>size</name>
+                        <value>3</value>
+                    </meta>
+                </display>
+                <validation required="true"/>
+            </fieldDef>
         </edl>
     
         <style name="BlogStyle">
@@ -125,6 +153,38 @@
                     <xsl:with-param name="fieldName" select="'body'"/>
                     <xsl:with-param name="renderCmd" select="'input'"/>
                 </xsl:call-template>
+                
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'onid'"/>
+                    <xsl:with-param name="renderCmd" select="'title'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'onid'"/>
+                    <xsl:with-param name="renderCmd" select="'input'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'affiliation'"/>
+                    <xsl:with-param name="renderCmd" select="'title'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'affiliation'"/>
+                    <xsl:with-param name="renderCmd" select="'input'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'year'"/>
+                    <xsl:with-param name="renderCmd" select="'title'"/>
+                </xsl:call-template>
+
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'year'"/>
+                    <xsl:with-param name="renderCmd" select="'input'"/>
+                </xsl:call-template>
+
+
             </xsl:template>
             </xsl:stylesheet>
         </style>
