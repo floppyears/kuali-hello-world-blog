@@ -72,6 +72,18 @@
                 </display>
                 <validation required="true"/>
             </fieldDef>
+
+            <fieldDef name="awesomeRating" title="Awesome Rating">
+                <value>1</value>
+                <display>
+                    <type>radio</type>
+                    <values title="1">1</values>
+                    <values title="2">2</values>
+                    <values title="3">3</values>
+                    <values title="4">4</values>
+                    <values title="5">5</values>
+                </display>
+            </fieldDef>
         </edl>
     
         <style name="BlogStyle">
@@ -184,7 +196,11 @@
                     <xsl:with-param name="renderCmd" select="'input'"/>
                 </xsl:call-template>
 
-
+                Awesome Rating:
+                <xsl:call-template name="widget_render">
+                    <xsl:with-param name="fieldName" select="'awesomeRating'"/>
+                    <xsl:with-param name="renderCmd" select="'input'"/>
+                </xsl:call-template>
             </xsl:template>
             </xsl:stylesheet>
         </style>
