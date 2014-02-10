@@ -22,10 +22,12 @@
             <fieldDef name="category" attributeName="EDL.Category.BlogPost" title="Category:">
                 <display>
                     <type>select</type>
+                    <values title="">null</values>
                     <values title="Talend">Talend</values>
                     <values title="Kuali">Kuali</values>
                 </display>
                 <validation required="true">
+                    <regex>[^null]</regex>
                     <message>Please select a category for your post.</message>
                 </validation>
             </fieldDef>
