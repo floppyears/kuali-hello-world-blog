@@ -74,7 +74,10 @@
                         <value>3</value>
                     </meta>
                 </display>
-                <validation required="true"/>
+                <validation required="true">
+                    <customValidator>cry</customValidator>
+                    <message>The value must be greater than 0.</message>
+                </validation>
             </fieldDef>
 
             <fieldDef name="awesomeRating" title="Awesome Rating">
@@ -175,7 +178,12 @@
 
                             <script language="javascript"><![CDATA[
                                 function cry(text){
-                                    alert('writing js within xml makes angels cry :(');
+                                    var number = parseInt(text)
+                                    if (number < 1) {
+                                        alert('writing js within xml makes angels cry :(');
+                                        return false;
+                                    }
+                                    return true;
                                 }
 
 
