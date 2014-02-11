@@ -220,26 +220,26 @@
                 <!-- debug: print variables as html comments -->
                 <!-- $docStatus=<xsl:value-of select="$docStatus" /> -->
 
-                <div class="container-fluid">
-                    <div class="span4">
-                        <h1>h1. Navigation Headers Examples</h1>
-                        <h2>h2. Navigation Headers</h2>
-                        <h3>h3. Navigation Headers</h3>
-                        <h4>h4. Navigation Headers</h4>
-                        <h5>h5. Navigation Headers</h5>
-                        <h6>h6. Navigation Headers</h6>
+                <div class="container">
+                    <div class="row">
+                        <div class="span4">
+                            <h1>h1. Navigation Headers Examples</h1>
+                            <h2>h2. Navigation Headers</h2>
+                            <h3>h3. Navigation Headers</h3>
+                            <h4>h4. Navigation Headers</h4>
+                            <h5>h5. Navigation Headers</h5>
+                            <h6>h6. Navigation Headers</h6>
 
 
-                        <div class="alert">
-                            <button type="button" class="close" data-dismiss="alert">times</button>
-                            <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                            <div class="alert">
+                                <button type="button" class="close" data-dismiss="alert">times</button>
+                                <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                            </div>
+
+                            <a href="#" data-toggle="tooltip" title="first tooltip">hover over me</a>
                         </div>
 
-                        <a href="#" data-toggle="tooltip" title="first tooltip">hover over me</a>
-                    </div>
-
-                    <div class="row-fluid">
-                        <div class="span8">
+                        <div class="span6 offset2">
                             <h2>Blog Post Sample Form</h2>
                             <div class="control-group">
                                 <label class="control-label">
