@@ -32,7 +32,7 @@
                 </validation>
             </fieldDef>
 
-            <fieldDef name="body" title="body">
+            <fieldDef name="body" title="Body">
                 <display>
                     <type>textarea</type>
                     <meta>
@@ -166,7 +166,8 @@
                 <xsl:param name="overrideMain" select="'true'" />
 
                 <xsl:template name="mainForm">
-                    <html xmlns="">
+                    <!--<!DOCTYPE html/>-->
+                    <html xmlns="" lang="en">
                         <head>
                             <link href="/kr-dev/kr/scripts/jscalendar-1.0/calendar-win2k-1.css" rel="stylesheet" type="text/css" />
                             <link href="/kr-dev/themes/bootstrap/stylesheets/bootstrap.2.3.3.min.css" rel="stylesheet" type="text/css" />
@@ -178,6 +179,8 @@
 
                             <script src="/kr-dev/themes/bootstrap/scripts/bootstrap.2.3.3.min.js"></script>
 
+                            <xsl:call-template name="htmlHead" />
+
                             <script language="javascript"><![CDATA[
                                 function cry(text){
                                     var number = parseInt(text)
@@ -188,16 +191,13 @@
                                     return true;
                                 }
 
-
-                            jQuery(document).ready(function() {
-                                Calendar.setup({
-                                    inputField: 'submitDate',
-                                    ifFormat: '%m/%d/%Y'
+                                jQuery(document).ready(function() {
+                                    Calendar.setup({
+                                        inputField: 'submitDate',
+                                        ifFormat: '%m/%d/%Y'
+                                    });
                                 });
-                            });
                             ]]></script>
-
-                            <xsl:call-template name="htmlHead" />
                     </head>
                     <body onload="onPageLoad()">
                         <xsl:call-template name="header" />
@@ -220,143 +220,222 @@
                 <!-- debug: print variables as html comments -->
                 <!-- $docStatus=<xsl:value-of select="$docStatus" /> -->
 
-                <h2>Blog Post Sample Form</h2>
-                <fieldset>
-                    <legend>Main Blog</legend>
-                    <xsl:call-template name="widget_render">
-                        <xsl:with-param name="fieldName" select="'title'"/>
-                        <xsl:with-param name="renderCmd" select="'title'"/>
-                    </xsl:call-template>
+                <div class="container-fluid">
+                    <div class="span4">
+                        <h1>h1. Navigation Headers Examples</h1>
+                        <h2>h2. Navigation Headers</h2>
+                        <h3>h3. Navigation Headers</h3>
+                        <h4>h4. Navigation Headers</h4>
+                        <h5>h5. Navigation Headers</h5>
+                        <h6>h6. Navigation Headers</h6>
 
-                    <xsl:call-template name="widget_render">
-                        <xsl:with-param name="fieldName" select="'title'"/>
-                        <xsl:with-param name="renderCmd" select="'input'"/>
-                    </xsl:call-template>
 
-                    <xsl:call-template name="widget_render">
-                        <xsl:with-param name="fieldName" select="'category'"/>
-                        <xsl:with-param name="renderCmd" select="'title'"/>
-                    </xsl:call-template>
+                        <div class="alert">
+                            <button type="button" class="close" data-dismiss="alert">times</button>
+                            <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                        </div>
 
-                    <xsl:call-template name="widget_render">
-                        <xsl:with-param name="fieldName" select="'category'"/>
-                        <xsl:with-param name="renderCmd" select="'input'"/>
-                        <xsl:with-param name="readOnly" select="$isPastInitiated"/>
-                    </xsl:call-template>
+                        <a href="#" data-toggle="tooltip" title="first tooltip">hover over me</a>
+                    </div>
 
-                    <xsl:call-template name="widget_render">
-                        <xsl:with-param name="fieldName" select="'body'"/>
-                        <xsl:with-param name="renderCmd" select="'title'"/>
-                    </xsl:call-template>
+                    <div class="row-fluid">
+                        <div class="span8">
+                            <h2>Blog Post Sample Form</h2>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'title'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                    <xsl:call-template name="widget_render">
-                        <xsl:with-param name="fieldName" select="'body'"/>
-                        <xsl:with-param name="renderCmd" select="'input'"/>
-                    </xsl:call-template>
-                </fieldset>
-                
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'onid'"/>
-                    <xsl:with-param name="renderCmd" select="'title'"/>
-                </xsl:call-template>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'onid'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                </xsl:call-template>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'title'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'affiliation'"/>
-                    <xsl:with-param name="renderCmd" select="'title'"/>
-                </xsl:call-template>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'category'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'affiliation'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                </xsl:call-template>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'category'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                        <xsl:with-param name="readOnly" select="$isPastInitiated"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'year'"/>
-                    <xsl:with-param name="renderCmd" select="'title'"/>
-                </xsl:call-template>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'body'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'year'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                </xsl:call-template>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'body'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                Awesome Rating:
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'awesomeRating'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                </xsl:call-template>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'onid'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'purpose'"/>
-                    <xsl:with-param name="renderCmd" select="'title'"/>
-                </xsl:call-template>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'onid'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'purpose'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                </xsl:call-template>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'affiliation'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'multiple'"/>
-                    <xsl:with-param name="renderCmd" select="'title'"/>
-                </xsl:call-template>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'affiliation'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'multiple'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                </xsl:call-template>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'year'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'submitDate'"/>
-                    <xsl:with-param name="renderCmd" select="'title'"/>
-                </xsl:call-template>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'year'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'submitDate'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                </xsl:call-template>
+                            <div class="control-group">
+                                <label class="control-label">Awesome Rating:</label>
 
-                <input type="hidden" name="hiddenStuff" id ="hiddenStuff" value="42"/>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'awesomeRating'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'mascot'"/>
-                    <xsl:with-param name="renderCmd" select="'title'"/>
-                </xsl:call-template>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'purpose'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'mascot'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                    <xsl:with-param name="readOnly">true</xsl:with-param>
-                </xsl:call-template>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'purpose'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'veggies'"/>
-                    <xsl:with-param name="renderCmd" select="'title'"/>
-                </xsl:call-template>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'multiple'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                <xsl:call-template name="widget_render">
-                    <xsl:with-param name="fieldName" select="'veggies'"/>
-                    <xsl:with-param name="renderCmd" select="'input'"/>
-                </xsl:call-template>
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'multiple'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
 
-                <h1>h1. Testing Headers</h1>
-                <h2>h2. Testing Headers</h2>
-                <h3>h3. Testing Headers</h3>
-                <h4>h4. Testing Headers</h4>
-                <h5>h5. Testing Headers</h5>
-                <h6>h6. Testing Headers</h6>
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'submitDate'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
 
-                <div class="alert">
-                    <button type="button" class="close" data-dismiss="alert">times</button>
-                    <strong>Warning!</strong> Best check yo self, you're not looking too good.
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'submitDate'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <input type="hidden" name="hiddenStuff" id ="hiddenStuff" value="42"/>
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'mascot'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
+
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'mascot'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                        <xsl:with-param name="readOnly">true</xsl:with-param>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'veggies'"/>
+                                        <xsl:with-param name="renderCmd" select="'title'"/>
+                                    </xsl:call-template>
+                                </label>
+
+                                <div class="controls">
+                                    <xsl:call-template name="widget_render">
+                                        <xsl:with-param name="fieldName" select="'veggies'"/>
+                                        <xsl:with-param name="renderCmd" select="'input'"/>
+                                    </xsl:call-template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <a href="#" data-toggle="tooltip" title="first tooltip">hover over me</a>
 
             </xsl:template>
             </xsl:stylesheet>
